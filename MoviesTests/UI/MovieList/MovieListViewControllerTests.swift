@@ -41,6 +41,7 @@ class MovieListViewControllerTests: XCTestCase {
     
     func testViewDependencies() {
         XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.viewModel.view)
     }
     
     func testViewShouldAskViewModelForMovies() {

@@ -27,7 +27,7 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     
     func bindViewModel() {
         AppContainer.configure(self)
-        viewModel.fetchMovies()
+        viewModel.fetchMovies(sorted: .popular)
     }
     
     deinit {

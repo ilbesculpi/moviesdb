@@ -17,6 +17,8 @@ protocol MovieListViewContract: AnyObject {
 
 protocol MovieListViewModelContract: AnyObject {
     
-    func fetchMovies()
+    var view: MovieListViewContract! { get set }
+    
+    func fetchMovies(sorted: MovieListType)
     
 }

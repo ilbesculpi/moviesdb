@@ -15,19 +15,32 @@ class AppContainer {
     }
     
     static func bootstrap() {
+        registerServices()
         registerViewModels()
     }
     
     static func registerViewModels() {
         
         container.register(MovieListViewModelContract.self) { _ in
-            MovieListViewModel()
+            let repository = container.resolve(MovieService.self)!
+            return MovieListViewModel(repository: repository)
+        }
+        
+    }
+    
+    static func registerServices() {
+        
+        container.register(MovieService.self) { _ in
+            MovieServiceImpl()
         }
         
     }
     
     static func configure(_ viewController: MovieListViewController) {
-        viewController.viewModel = container.resolve(MovieListViewModelContract.self)
+        if let viewModel = container.resolve(MovieListViewModelContract.self) {
+            viewController.viewModel = viewModel
+            viewModel.view = viewController
+        }
     }
     
 }
