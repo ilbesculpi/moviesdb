@@ -26,13 +26,13 @@ struct Movie: Decodable {
     
     var posterUrl: String {
         get {
-            return "http://image.tmdb.org/t/p/w500/\(poster_path)"
+            return "https://image.tmdb.org/t/p/w500/\(poster_path)"
         }
     }
     
     var backdropUrl: String {
         get {
-            return "http://image.tmdb.org/t/p/w500/\(backdrop_path)"
+            return "https://image.tmdb.org/t/p/w500/\(backdrop_path)"
         }
     }
     

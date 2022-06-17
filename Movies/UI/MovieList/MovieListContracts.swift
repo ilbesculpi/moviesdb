@@ -6,7 +6,7 @@ import Foundation
 
 struct MovieListItemProps {
     var title: String = ""
-    var imageUrl: String = ""
+    var imageUrl: URL?
 }
 
 protocol MovieListViewContract: AnyObject {

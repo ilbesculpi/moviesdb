@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieListItemTableViewCell: UITableViewCell {
     
@@ -27,6 +28,10 @@ class MovieListItemTableViewCell: UITableViewCell {
     
     func displayMovie(_ movie: MovieListItemProps) {
         labelTitle.text = movie.title
+        
+        // Display Movie Poster
+        let placeholder = UIImage(named: "Placeholder")
+        imagePoster.sd_setImage(with: movie.imageUrl, placeholderImage: placeholder)
     }
 
 }

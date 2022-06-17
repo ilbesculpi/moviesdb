@@ -25,7 +25,7 @@ class MovieListViewModel: MovieListViewModelContract {
                 return movies.map({
                     var item = MovieListItemProps()
                     item.title = $0.title
-                    item.imageUrl = $0.posterUrl
+                    item.imageUrl = URL(string: $0.posterUrl)
                     return item
                 })
             })
