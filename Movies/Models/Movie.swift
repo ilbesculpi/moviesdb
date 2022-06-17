@@ -36,6 +36,14 @@ struct Movie: Decodable {
         }
     }
     
+    var releaseDateObj: Date? {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            return formatter.date(from: release_date)
+        }
+    }
+    
     init(id: Int, title: String) {
         self.id = id
         self.title = title

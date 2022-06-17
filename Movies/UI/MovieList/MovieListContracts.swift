@@ -6,6 +6,8 @@ import Foundation
 
 struct MovieListItemProps {
     var title: String = ""
+    var overview: String = ""
+    var date: String = ""
     var imageUrl: URL?
 }
 

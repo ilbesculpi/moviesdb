@@ -25,6 +25,12 @@ class MovieListViewModel: MovieListViewModelContract {
                 return movies.map({
                     var item = MovieListItemProps()
                     item.title = $0.title
+                    item.overview = $0.overview
+                    if let releaseDate = $0.releaseDateObj {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "MMM dd, yyyy"
+                        item.date = formatter.string(from: releaseDate)
+                    }
                     item.imageUrl = URL(string: $0.posterUrl)
                     return item
                 })

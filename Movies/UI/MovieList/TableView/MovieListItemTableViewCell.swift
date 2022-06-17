@@ -27,7 +27,10 @@ class MovieListItemTableViewCell: UITableViewCell {
     }
     
     func displayMovie(_ movie: MovieListItemProps) {
+        
         labelTitle.text = movie.title
+        labelOverview.text = movie.overview
+        labelDate.text = movie.date
         
         // Display Movie Poster
         let placeholder = UIImage(named: "Placeholder")
