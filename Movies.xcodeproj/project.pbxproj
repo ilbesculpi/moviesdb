@@ -13,6 +13,7 @@
 		195D28A7285CCB8C00F21500 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D28A6285CCB8C00F21500 /* MovieService.swift */; };
 		195D28AA285CCBF800F21500 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D28A9285CCBF800F21500 /* Movie.swift */; };
 		195D28AC285CCD0400F21500 /* MovieServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D28AB285CCD0400F21500 /* MovieServiceImpl.swift */; };
+		195D28AE285CFBA600F21500 /* MovieListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D28AD285CFBA600F21500 /* MovieListItemTableViewCell.swift */; };
 		19C52CD5285CBD260028861C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C52CD4285CBD260028861C /* AppDelegate.swift */; };
 		19C52CD7285CBD260028861C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C52CD6285CBD260028861C /* SceneDelegate.swift */; };
 		19C52CD9285CBD260028861C /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C52CD8285CBD260028861C /* MovieListViewController.swift */; };
@@ -55,6 +56,7 @@
 		195D28A6285CCB8C00F21500 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		195D28A9285CCBF800F21500 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		195D28AB285CCD0400F21500 /* MovieServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceImpl.swift; sourceTree = "<group>"; };
+		195D28AD285CFBA600F21500 /* MovieListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItemTableViewCell.swift; sourceTree = "<group>"; };
 		19C52CD1285CBD260028861C /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C52CD4285CBD260028861C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C52CD6285CBD260028861C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				195D289E285CC60500F21500 /* MovieListDataSource.swift */,
+				195D28AD285CFBA600F21500 /* MovieListItemTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				19C52D08285CBF0E0028861C /* MovieListContracts.swift in Sources */,
 				19C52CD9285CBD260028861C /* MovieListViewController.swift in Sources */,
 				195D28AA285CCBF800F21500 /* Movie.swift in Sources */,
+				195D28AE285CFBA600F21500 /* MovieListItemTableViewCell.swift in Sources */,
 				19C52CD5285CBD260028861C /* AppDelegate.swift in Sources */,
 				19C52CD7285CBD260028861C /* SceneDelegate.swift in Sources */,
 				19C52D10285CC0290028861C /* MovieListViewModel.swift in Sources */,

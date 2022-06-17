@@ -23,6 +23,7 @@ class MovieListViewController: UIViewController, MovieListViewContract {
         dataSource = MovieListDataSource()
         tableView.dataSource = dataSource
         tableView.delegate = self
+        tableView.rowHeight = 180
     }
     
     func bindViewModel() {
@@ -39,7 +40,8 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     // MARK: - MovieListViewContract
     
     func displayMovies(_ movies: [MovieListItemProps]) {
-        
+        dataSource.setMovies(movies)
+        tableView.reloadData()
     }
  
 }

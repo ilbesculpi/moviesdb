@@ -20,7 +20,8 @@ class MovieListViewModel: MovieListViewModelContract {
     
     func fetchMovies(sorted: MovieListType) {
         repository.fetchMovies(sorted)
-            .map({ movies in
+            .receive(on: DispatchQueue.main)
+            .map({ movies -> [MovieListItemProps] in
                 return movies.map({
                     var item = MovieListItemProps()
                     item.title = $0.title
@@ -28,10 +29,17 @@ class MovieListViewModel: MovieListViewModelContract {
                     return item
                 })
             })
-            .sink(receiveCompletion: { result in
-                
-            }, receiveValue: { [weak self] values in
-                self?.view.displayMovies(values)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    print("Error fetching movies: " + error.localizedDescription)
+                    // TODO: handle api error
+                case .finished:
+                    print("fetch complete")
+                }
+            }, receiveValue: { [weak self] movies in
+                print("Display \(movies.count) movies")
+                self?.view.displayMovies(movies)
             })
             .store(in: &cancellables)
     }

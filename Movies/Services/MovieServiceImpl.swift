@@ -8,6 +8,13 @@
 import Foundation
 import Combine
 
+struct FetchMoviesResponse: Decodable {
+    var page: Int
+    var results: [Movie]
+    var total_pages: Int
+    var total_results: Int
+}
+
 class MovieServiceImpl: MovieService {
     
     func fetchMovies(_ sort: MovieListType) -> AnyPublisher<[Movie], Error> {
@@ -20,7 +27,8 @@ class MovieServiceImpl: MovieService {
         // Fetch from network and decode
         return URLSession.shared.dataTaskPublisher(for: request)
             .map(\.data)
-            .decode(type: [Movie].self, decoder: JSONDecoder())
+            .decode(type: FetchMoviesResponse.self, decoder: JSONDecoder())
+            .map(\.results)
             .eraseToAnyPublisher()
     }
 

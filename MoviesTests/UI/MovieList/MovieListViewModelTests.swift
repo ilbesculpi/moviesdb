@@ -47,20 +47,16 @@ class MovieListViewModelTests: XCTestCase {
         let expectation = expectation(description: "fetchMovies")
         
         repositorySpy.publisher
-            .sink(receiveCompletion: { completion in
-                
-            }, receiveValue: { value in
+            .sink { value in
                 XCTAssertTrue(self.repositorySpy.fetchMoviesCalled)
                 XCTAssertEqual(MovieListType.popular, self.repositorySpy.fetchMoviesArg)
                 expectation.fulfill()
-            })
+            }
             .store(in: &cancellables)
         
         
         repositorySpy.emitMovies(movies)
         wait(for: [expectation], timeout: 3)
-            
-        
     }
 
 }
