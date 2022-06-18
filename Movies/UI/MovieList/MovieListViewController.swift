@@ -71,8 +71,6 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     func displayTitle(_ title: String) {
         self.title = title
     }
-    
-    
  
 }
 

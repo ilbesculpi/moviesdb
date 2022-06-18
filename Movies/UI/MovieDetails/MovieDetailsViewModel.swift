@@ -17,10 +17,18 @@ class MovieDetailsViewModel: MovieDetailsViewModelContract {
     }
     
     func fetchMovie() {
-        var props = MovieDetailsProps()
-        props.title = movie.title
-        props.overview = movie.overview
-        view.displayMovieDetails(props)
+        var item = MovieDetailsProps()
+        item.title = movie.title
+        item.overview = movie.overview
+        // release date
+        if let releaseDate = movie.releaseDateObj {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            item.releaseDate = formatter.string(from: releaseDate)
+        }
+        item.posterImageUrl = URL(string: movie.posterUrl)
+        item.backdropImageUrl = URL(string: movie.backdropUrl)
+        view.displayMovieDetails(item)
     }
     
 }

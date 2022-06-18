@@ -11,6 +11,9 @@ struct MovieDetailsProps {
     
     var title: String = ""
     var overview: String = ""
+    var releaseDate: String = ""
+    var posterImageUrl: URL!
+    var backdropImageUrl: URL!
     
 }
 

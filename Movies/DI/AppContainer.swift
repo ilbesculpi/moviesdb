@@ -26,6 +26,10 @@ class AppContainer {
             return MovieListViewModel(repository: repository)
         }
         
+        container.register(MovieDetailsViewModelContract.self) { _ in
+            return MovieDetailsViewModel()
+        }
+        
     }
     
     static func registerServices() {
