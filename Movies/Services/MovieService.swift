@@ -10,11 +10,18 @@ import Combine
 
 enum MovieListType {
     case popular
-    case recent
+    case topRated
+}
+
+struct FetchMoviesResponse: Decodable {
+    var page: Int
+    var results: [Movie]
+    var total_pages: Int
+    var total_results: Int
 }
 
 protocol MovieService {
     
-    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<[Movie], Error>
+    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<FetchMoviesResponse, Error>
     
 }

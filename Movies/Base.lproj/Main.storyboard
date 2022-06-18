@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="1160.8695652173915" y="108.48214285714285"/>
         </scene>
-        <!--Movie List View Controller-->
+        <!--Movies-->
         <scene sceneID="PXp-WM-4FC">
             <objects>
                 <viewController storyboardIdentifier="MovieList" id="Grf-fk-j3W" customClass="MovieListViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,12 +101,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="49Q-Y3-Fjx" firstAttribute="leading" secondItem="CDi-e0-chr" secondAttribute="leading" id="7tK-wU-Cxb"/>
-                            <constraint firstItem="49Q-Y3-Fjx" firstAttribute="top" secondItem="CDi-e0-chr" secondAttribute="top" id="OpY-h7-J55"/>
+                            <constraint firstItem="49Q-Y3-Fjx" firstAttribute="top" secondItem="CDi-e0-chr" secondAttribute="top" id="AEM-wm-sGk"/>
                             <constraint firstItem="49Q-Y3-Fjx" firstAttribute="bottom" secondItem="CDi-e0-chr" secondAttribute="bottom" id="Tge-lW-LKQ"/>
                             <constraint firstItem="49Q-Y3-Fjx" firstAttribute="trailing" secondItem="CDi-e0-chr" secondAttribute="trailing" id="VGg-0V-vda"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="W0Y-CK-zYw"/>
+                    <navigationItem key="navigationItem" title="Movies" id="W0Y-CK-zYw">
+                        <barButtonItem key="rightBarButtonItem" title="Popular" image="shuffle" catalog="system" id="YSR-br-l3C"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="49Q-Y3-Fjx" id="NUR-Nc-y0k"/>
                     </connections>
@@ -117,6 +119,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="shuffle" catalog="system" width="128" height="95"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

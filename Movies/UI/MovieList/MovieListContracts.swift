@@ -14,6 +14,7 @@ struct MovieListItemProps {
 protocol MovieListViewContract: AnyObject {
     
     func displayMovies(_ movies: [MovieListItemProps])
+    func displayTitle(_ title: String)
     
 }
 
@@ -22,5 +23,6 @@ protocol MovieListViewModelContract: AnyObject {
     var view: MovieListViewContract! { get set }
     
     func fetchMovies(sorted: MovieListType)
+    func toggleFilter(sorted: MovieListType)
     
 }

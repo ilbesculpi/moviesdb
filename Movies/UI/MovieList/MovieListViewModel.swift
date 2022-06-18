@@ -13,14 +13,29 @@ class MovieListViewModel: MovieListViewModelContract {
     var repository: MovieService
     weak var view: MovieListViewContract!
     var cancellables = Set<AnyCancellable>()
+    var sortBy: MovieListType = .popular
     
     init(repository: MovieService) {
         self.repository = repository
     }
     
+    func toggleFilter(sorted: MovieListType) {
+        sortBy = sorted
+        fetchMovies(sorted: sortBy)
+    }
+    
     func fetchMovies(sorted: MovieListType) {
+        
+        switch sorted {
+        case .popular:
+            self.view.displayTitle("Popular Movies")
+        case .topRated:
+            self.view.displayTitle("Top Rated Movies")
+        }
+        
         repository.fetchMovies(sorted)
             .receive(on: DispatchQueue.main)
+            .map(\.results)
             .map({ movies -> [MovieListItemProps] in
                 return movies.map({
                     var item = MovieListItemProps()

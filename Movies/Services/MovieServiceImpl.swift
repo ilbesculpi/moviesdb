@@ -8,19 +8,21 @@
 import Foundation
 import Combine
 
-struct FetchMoviesResponse: Decodable {
-    var page: Int
-    var results: [Movie]
-    var total_pages: Int
-    var total_results: Int
-}
+
+
+let tags = [
+    MovieListType.popular: "popular",
+    MovieListType.topRated: "top_rated"
+]
 
 class MovieServiceImpl: MovieService {
     
-    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<[Movie], Error> {
+    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<FetchMoviesResponse, Error> {
         
         // Build Request
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=34738023d27013e6d1b995443764da44")!
+        let apiKey = "34738023d27013e6d1b995443764da44"
+        let tag = tags[sort]!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(tag)?api_key=\(apiKey)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -28,7 +30,6 @@ class MovieServiceImpl: MovieService {
         return URLSession.shared.dataTaskPublisher(for: request)
             .map(\.data)
             .decode(type: FetchMoviesResponse.self, decoder: JSONDecoder())
-            .map(\.results)
             .eraseToAnyPublisher()
     }
 
