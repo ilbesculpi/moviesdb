@@ -1,0 +1,22 @@
+PODS:
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
+  - Swinject (2.8.1)
+
+DEPENDENCIES:
+  - SDWebImage (~> 5.0)
+  - Swinject
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
+    - Swinject
+
+SPEC CHECKSUMS:
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
+
+PODFILE CHECKSUM: e03b32c1e43629aec278be9ae85789600243edff
+
+COCOAPODS: 1.11.3
