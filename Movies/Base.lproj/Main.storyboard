@@ -111,11 +111,28 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="49Q-Y3-Fjx" id="NUR-Nc-y0k"/>
+                        <segue destination="DcS-Ip-fEz" kind="show" identifier="movieDetails" id="SND-Wm-CFz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT6-66-5Qs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2071.0144927536235" y="108.48214285714285"/>
+        </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="OPt-W9-1ad">
+            <objects>
+                <viewController id="DcS-Ip-fEz" customClass="MovieDetailsViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5yr-8h-jgN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="erB-vb-QOn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Js0-WT-EAD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0nM-dg-tb4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3033" y="108"/>
         </scene>
     </scenes>
     <resources>

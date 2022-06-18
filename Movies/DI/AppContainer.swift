@@ -43,4 +43,12 @@ class AppContainer {
         }
     }
     
+    static func configure(_ viewController: MovieDetailsViewController, movie: Movie) {
+        if let viewModel = container.resolve(MovieDetailsViewModelContract.self) {
+            viewModel.setMovie(movie)
+            viewController.viewModel = viewModel
+            viewModel.view = viewController
+        }
+    }
+    
 }

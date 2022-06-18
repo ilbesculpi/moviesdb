@@ -47,5 +47,21 @@ class MovieListViewControllerTests: XCTestCase {
     func testViewShouldAskViewModelForMovies() {
         XCTAssertTrue(viewModelSpy.fetchMoviesCalled)
     }
+    
+    func testSelectRowShouldSelectMovie() {
+        let tableView = viewController.tableView!
+        let indexPath = IndexPath(row: 1, section: 0)
+        viewController.tableView(tableView, didSelectRowAt: indexPath)
+        XCTAssertTrue(viewModelSpy.selectMovieCalled)
+        XCTAssertEqual(1, viewModelSpy.selectMovieArg)
+    }
+    
+    func testSelectRowShouldNavigateToMovieDetailsScene() {
+        let tableView = viewController.tableView!
+        let indexPath = IndexPath(row: 1, section: 0)
+        viewController.tableView(tableView, didSelectRowAt: indexPath)
+        XCTAssertTrue(viewModelSpy.selectMovieCalled)
+        XCTAssertEqual(1, viewModelSpy.selectMovieArg)
+    }
 
 }

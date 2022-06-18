@@ -14,6 +14,8 @@ class MovieListViewModel: MovieListViewModelContract {
     weak var view: MovieListViewContract!
     var cancellables = Set<AnyCancellable>()
     var sortBy: MovieListType = .popular
+    var movies: [Movie] = []
+    var selectedMovie: Movie?
     
     init(repository: MovieService) {
         self.repository = repository
@@ -36,7 +38,8 @@ class MovieListViewModel: MovieListViewModelContract {
         repository.fetchMovies(sorted)
             .receive(on: DispatchQueue.main)
             .map(\.results)
-            .map({ movies -> [MovieListItemProps] in
+            .map({ [weak self] movies -> [MovieListItemProps] in
+                self?.movies = movies
                 return movies.map({
                     var item = MovieListItemProps()
                     item.title = $0.title
@@ -63,6 +66,14 @@ class MovieListViewModel: MovieListViewModelContract {
                 self?.view.displayMovies(movies)
             })
             .store(in: &cancellables)
+    }
+    
+    func selectMovie(at index: Int) {
+        guard movies.indices.contains(index) else {
+            print("Invalid index")
+            return
+        }
+        selectedMovie = movies[index]
     }
     
 }
