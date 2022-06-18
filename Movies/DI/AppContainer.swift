@@ -26,6 +26,10 @@ class AppContainer {
             return MovieListViewModel(repository: repository)
         }
         
+        container.register(MovieDetailsViewModelContract.self) { _ in
+            return MovieDetailsViewModel()
+        }
+        
     }
     
     static func registerServices() {
@@ -38,6 +42,14 @@ class AppContainer {
     
     static func configure(_ viewController: MovieListViewController) {
         if let viewModel = container.resolve(MovieListViewModelContract.self) {
+            viewController.viewModel = viewModel
+            viewModel.view = viewController
+        }
+    }
+    
+    static func configure(_ viewController: MovieDetailsViewController, movie: Movie) {
+        if let viewModel = container.resolve(MovieDetailsViewModelContract.self) {
+            viewModel.setMovie(movie)
             viewController.viewModel = viewModel
             viewModel.view = viewController
         }

@@ -71,8 +71,6 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     func displayTitle(_ title: String) {
         self.title = title
     }
-    
-    
  
 }
 
@@ -83,6 +81,18 @@ extension MovieListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.selectMovie(at: indexPath.row)
+        performSegue(withIdentifier: "movieDetails", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? MovieDetailsViewController else {
+            return
+        }
+        guard let movie = viewModel.selectedMovie else {
+            return
+        }
+        AppContainer.configure(destination, movie: movie)
     }
     
 }

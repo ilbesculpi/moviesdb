@@ -21,8 +21,10 @@ protocol MovieListViewContract: AnyObject {
 protocol MovieListViewModelContract: AnyObject {
     
     var view: MovieListViewContract! { get set }
+    var selectedMovie: Movie? { get }
     
     func fetchMovies(sorted: MovieListType)
     func toggleFilter(sorted: MovieListType)
+    func selectMovie(at index: Int)
     
 }

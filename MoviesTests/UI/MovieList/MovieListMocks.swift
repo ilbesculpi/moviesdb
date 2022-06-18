@@ -34,9 +34,8 @@ class MovieListViewSpy: MovieListViewContract {
 
 class MovieListViewModelSpy: MovieListViewModelContract {
     
-    
     var view: MovieListViewContract!
-    
+    var selectedMovie: Movie?
     
     // MARK: - fetchMovies(_)
     var fetchMoviesCalled: Bool = false
@@ -47,13 +46,21 @@ class MovieListViewModelSpy: MovieListViewModelContract {
         fetchMoviesArg = sorted
     }
     
-    // MARK: - toggleFilter
+    // MARK: - toggleFilter(sorted:)
     var toggleFilterCalled: Bool = false
     var toggleFilterArg: MovieListType?
     
     func toggleFilter(sorted: MovieListType) {
         toggleFilterCalled = true
         toggleFilterArg = sorted
+    }
+    
+    // MARK: - selectMovie(at:)
+    var selectMovieCalled: Bool = false
+    var selectMovieArg: Int?
+    func selectMovie(at index: Int) {
+        selectMovieCalled = true
+        selectMovieArg = index
     }
     
 }
