@@ -7,6 +7,7 @@ target 'Movies' do
 
   # Pods for Movies
   pod 'Swinject'
+  pod 'SDWebImage', '~> 5.0'
 
   target 'MoviesTests' do
     inherit! :search_paths
