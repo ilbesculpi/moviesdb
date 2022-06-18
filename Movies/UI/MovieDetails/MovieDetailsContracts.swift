@@ -19,6 +19,7 @@ struct MovieDetailsProps {
 
 protocol MovieDetailsViewContract: AnyObject {
     
+    func displayTitle(_ title: String)
     func displayMovieDetails(_ movie: MovieDetailsProps)
     
 }

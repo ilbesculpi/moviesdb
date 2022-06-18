@@ -31,10 +31,15 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     func configureViews() {
         moviePanel.layer.cornerRadius = 10
         moviePanel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        imagePoster.layer.cornerRadius = 10
     }
     
     
     // MARK: - MovieDetailsViewContract
+    
+    func displayTitle(_ title: String) {
+        self.title = title
+    }
     
     func displayMovieDetails(_ movie: MovieDetailsProps) {
         labelTitle.text = movie.title

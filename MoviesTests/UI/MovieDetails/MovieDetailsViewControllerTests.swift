@@ -6,30 +6,60 @@
 //
 
 import XCTest
+@testable import Movies
 
 class MovieDetailsViewControllerTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var viewController: MovieDetailsViewController!
+    var viewModelSpy: MovieDetailsViewModelSpy!
+    
+    override func setUp() {
+        
+        // Configure dependencies
+        viewModelSpy = MovieDetailsViewModelSpy()
+        
+        // Instantiate SUT
+        let bundle = Bundle(for: MovieListViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        viewController = storyboard.instantiateViewController(identifier: "MovieDetails")
+        viewController.viewModel = viewModelSpy
+        viewController.loadViewIfNeeded()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        viewModelSpy = nil
+        viewController = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testViewShouldAskViewModelForMovieDetails() {
+        XCTAssertTrue(viewModelSpy.fetchMovieCalled)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testViewShouldUpdateViews() {
+        
+        // When: Given a movie
+        let movie = MovieDetailsProps(
+            title: "Titanic",
+            overview: "Lorem Ipsum",
+            releaseDate: "Jun 1, 2020"
+        )
+        
+        // Then: call viewController.displayMovieDetails()
+        viewController.displayMovieDetails(movie)
+        
+        // Expect: views should contain given data
+        XCTAssertEqual("Titanic", viewController.labelTitle.text)
+        XCTAssertEqual("Lorem Ipsum", viewController.labelOverview.text)
+        XCTAssertEqual("Jun 1, 2020", viewController.labelReleaseDate.text)
+    }
+    
+    func testViewShouldDisplayTitle() {
+                
+        // Then: call viewController.displayMovieDetails()
+        viewController.displayTitle("Titanic")
+        
+        // Expect: views should contain given data
+        XCTAssertEqual("Titanic", viewController.title)
     }
 
 }

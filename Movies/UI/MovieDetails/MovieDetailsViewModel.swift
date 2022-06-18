@@ -29,6 +29,7 @@ class MovieDetailsViewModel: MovieDetailsViewModelContract {
         item.posterImageUrl = URL(string: movie.posterUrl)
         item.backdropImageUrl = URL(string: movie.backdropUrl)
         view.displayMovieDetails(item)
+        view.displayTitle(movie.title)
     }
     
 }

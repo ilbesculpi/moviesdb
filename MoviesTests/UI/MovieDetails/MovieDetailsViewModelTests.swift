@@ -37,5 +37,19 @@ class MovieDetailsViewModelTests: XCTestCase {
         XCTAssertTrue(viewControllerSpy.displayMovieDetailsCalled)
         XCTAssertEqual("Titanic", viewControllerSpy.displayMovieDetailsArg?.title)
     }
+    
+    func testViewModelShouldInstructViewToDisplayMovieTitle() {
+        
+        // When: Given a Movie
+        let movie = Movie(id: 1, title: "Titanic")
+        viewModel.setMovie(movie)
+        
+        // Then: Call viewModel.fetchMovie()
+        viewModel.fetchMovie()
+        
+        // Expect: viewModel should instruct view to display props
+        XCTAssertTrue(viewControllerSpy.displayTitleCalled)
+        XCTAssertEqual("Titanic", viewControllerSpy.displayTitleArg)
+    }
 
 }
