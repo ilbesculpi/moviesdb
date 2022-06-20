@@ -13,8 +13,8 @@ struct Movie: Decodable {
     var title: String = ""
     var overview: String = ""
     
-    var poster_path: String = ""
-    var backdrop_path: String = ""
+    var poster_path: String? = ""
+    var backdrop_path: String? = ""
     var original_language: String = ""
     var original_title: String = ""
     var popularity: Float = 0
@@ -26,13 +26,19 @@ struct Movie: Decodable {
     
     var posterUrl: String {
         get {
-            return "https://image.tmdb.org/t/p/w500/\(poster_path)"
+            if let path = poster_path {
+                return "https://image.tmdb.org/t/p/w500/\(path)"
+            }
+            return "https://pbs.twimg.com/profile_images/1243623122089041920/gVZIvphd_400x400.jpg"
         }
     }
     
     var backdropUrl: String {
         get {
-            return "https://image.tmdb.org/t/p/w500/\(backdrop_path)"
+            if let path = backdrop_path {
+                return "https://image.tmdb.org/t/p/w500/\(path)"
+            }
+            return "https://pbs.twimg.com/profile_images/1243623122089041920/gVZIvphd_400x400.jpg"
         }
     }
     
