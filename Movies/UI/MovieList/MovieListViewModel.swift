@@ -38,10 +38,10 @@ class MovieListViewModel: MovieListViewModelContract {
         switch sorted {
         case .popular:
             self.view.displayTitle("Popular Movies")
-            print("fetch Popular Movies #\(page)")
+            print("Fetch Popular Movies #\(page)")
         case .topRated:
             self.view.displayTitle("Top Rated Movies")
-            print("fetch Top Rated Movies #\(page)")
+            print("Fetch Top Rated Movies #\(page)")
         }
         
         repository.fetchMovies(sorted, page: page)
