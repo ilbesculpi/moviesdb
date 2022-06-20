@@ -16,6 +16,7 @@ class MovieListViewModel: MovieListViewModelContract {
     var sortBy: MovieListType = .popular
     var movies: [Movie] = []
     var selectedMovie: Movie?
+    var response: FetchMoviesResponse!
     
     init(repository: MovieService) {
         self.repository = repository
@@ -23,24 +24,39 @@ class MovieListViewModel: MovieListViewModelContract {
     
     func toggleFilter(sorted: MovieListType) {
         sortBy = sorted
+        movies = []
+        response = nil
         fetchMovies(sorted: sortBy)
     }
     
     func fetchMovies(sorted: MovieListType) {
+        fetchMovies(sorted: sorted, page: 1)
+    }
+    
+    func fetchMovies(sorted: MovieListType, page: Int = 1) {
         
         switch sorted {
         case .popular:
             self.view.displayTitle("Popular Movies")
+            print("Fetch Popular Movies #\(page)")
         case .topRated:
             self.view.displayTitle("Top Rated Movies")
+            print("Fetch Top Rated Movies #\(page)")
         }
         
-        repository.fetchMovies(sorted)
+        repository.fetchMovies(sorted, page: page)
             .receive(on: DispatchQueue.main)
-            .map(\.results)
+            .map({ [weak self] response -> [Movie]  in
+                self?.response = response
+                return response.results
+            })
             .map({ [weak self] movies -> [MovieListItemProps] in
-                self?.movies = movies
-                return movies.map({
+                // append items
+                guard let viewModel = self else {
+                    return []
+                }
+                viewModel.movies.append(contentsOf: movies)
+                return viewModel.movies.map({
                     var item = MovieListItemProps()
                     item.title = $0.title
                     item.overview = $0.overview
@@ -62,10 +78,19 @@ class MovieListViewModel: MovieListViewModelContract {
                     print("fetch complete")
                 }
             }, receiveValue: { [weak self] movies in
-                print("Display \(movies.count) movies")
-                self?.view.displayMovies(movies)
+                print("Display \(movies.count) movies.")
+                if let response = self?.response {
+                    let fetchMore = response.total_pages > page
+                    self?.view.displayMovies(movies, fetchMore: fetchMore)
+                }
             })
             .store(in: &cancellables)
+    }
+    
+    func fetchNextItems() {
+        print("Fetch next rows")
+        let nextPage = response == nil ? 1 : response.page + 1
+        fetchMovies(sorted: self.sortBy, page: nextPage)
     }
     
     func selectMovie(at index: Int) {

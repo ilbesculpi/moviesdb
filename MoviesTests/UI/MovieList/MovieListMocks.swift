@@ -16,7 +16,7 @@ class MovieListViewSpy: MovieListViewContract {
     var displayMoviesCalled: Bool = false
     var displayMoviesArg: [MovieListItemProps]?
     
-    func displayMovies(_ movies: [MovieListItemProps]) {
+    func displayMovies(_ movies: [MovieListItemProps], fetchMore: Bool) {
         displayMoviesCalled = true
         displayMoviesArg = movies
     }
@@ -55,6 +55,13 @@ class MovieListViewModelSpy: MovieListViewModelContract {
         toggleFilterArg = sorted
     }
     
+    
+    // MARK: - fetchNextItems()
+    var fetchNextItemsCalled: Bool = false
+    func fetchNextItems() {
+        fetchMoviesCalled = true
+    }
+    
     // MARK: - selectMovie(at:)
     var selectMovieCalled: Bool = false
     var selectMovieArg: Int?
@@ -69,12 +76,16 @@ class MovieServiceSpy: MovieService {
     
     var fetchMoviesCalled: Bool = false
     var fetchMoviesArg: MovieListType?
+    var fetchMoviesArg2: Int?
     var publisher = PassthroughSubject<FetchMoviesResponse, Error>()
+    var subject: AnyPublisher<FetchMoviesResponse, Error>!
     
-    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<FetchMoviesResponse, Error> {
+    func fetchMovies(_ sort: MovieListType, page: Int) -> AnyPublisher<FetchMoviesResponse, Error> {
         fetchMoviesCalled = true
         fetchMoviesArg = sort
-        return publisher.eraseToAnyPublisher()
+        fetchMoviesArg2 = page
+        subject = publisher.eraseToAnyPublisher()
+        return subject
     }
     
     func emitMovies(_ values: [Movie], page: Int = 1, total_pages: Int = 1, total_results: Int = 10) {

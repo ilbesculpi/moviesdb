@@ -94,6 +94,23 @@
                                             <outlet property="labelTitle" destination="mgG-J3-a66" id="ObV-62-2je"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" rowHeight="64" id="3rd-WI-NoB">
+                                        <rect key="frame" x="0.0" y="244.5" width="414" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3rd-WI-NoB" id="ZZW-7J-Wlb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="MCx-ev-6cu">
+                                                    <rect key="frame" x="197" y="22" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MCx-ev-6cu" firstAttribute="centerX" secondItem="ZZW-7J-Wlb" secondAttribute="centerX" id="3hM-qL-BKK"/>
+                                                <constraint firstItem="MCx-ev-6cu" firstAttribute="centerY" secondItem="ZZW-7J-Wlb" secondAttribute="centerY" id="NOr-Ca-6hf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

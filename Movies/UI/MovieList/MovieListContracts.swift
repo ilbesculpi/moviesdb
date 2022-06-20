@@ -13,7 +13,7 @@ struct MovieListItemProps {
 
 protocol MovieListViewContract: AnyObject {
     
-    func displayMovies(_ movies: [MovieListItemProps])
+    func displayMovies(_ movies: [MovieListItemProps], fetchMore: Bool)
     func displayTitle(_ title: String)
     
 }
@@ -23,8 +23,9 @@ protocol MovieListViewModelContract: AnyObject {
     var view: MovieListViewContract! { get set }
     var selectedMovie: Movie? { get }
     
-    func fetchMovies(sorted: MovieListType)
     func toggleFilter(sorted: MovieListType)
+    func fetchMovies(sorted: MovieListType)
+    func fetchNextItems()
     func selectMovie(at index: Int)
     
 }
