@@ -14,6 +14,8 @@ class MovieListItemTableViewCell: UITableViewCell {
     @IBOutlet var labelDate: UILabel!
     @IBOutlet var labelOverview: UILabel!
     @IBOutlet var imagePoster: UIImageView!
+    
+    static let cellHeight: Float = 180
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -22,6 +22,6 @@ struct FetchMoviesResponse: Decodable {
 
 protocol MovieService {
     
-    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<FetchMoviesResponse, Error>
+    func fetchMovies(_ sort: MovieListType, page: Int) -> AnyPublisher<FetchMoviesResponse, Error>
     
 }

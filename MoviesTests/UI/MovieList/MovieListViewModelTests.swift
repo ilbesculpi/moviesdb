@@ -43,11 +43,8 @@ class MovieListViewModelTests: XCTestCase {
         
         // Then: Subscribe to publisher
         let expectation = expectation(description: "fetchMovies")
-        
         repositorySpy.publisher
             .sink { value in
-                XCTAssertTrue(self.repositorySpy.fetchMoviesCalled)
-                XCTAssertEqual(MovieListType.popular, self.repositorySpy.fetchMoviesArg)
                 expectation.fulfill()
             }
             .store(in: &cancellables)
@@ -55,7 +52,12 @@ class MovieListViewModelTests: XCTestCase {
         // Then: emit values
         repositorySpy.emitMovies(movies)
         wait(for: [expectation], timeout: 3)
+        
+        // Expect: viewModel should call repository.fetchMovies()
+        XCTAssertTrue(repositorySpy.fetchMoviesCalled)
+        XCTAssertEqual(MovieListType.popular, repositorySpy.fetchMoviesArg)
     }
+    
     
     func testShouldDisplayTitleOnView() {
         

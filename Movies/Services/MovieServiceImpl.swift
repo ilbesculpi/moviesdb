@@ -17,12 +17,12 @@ let tags = [
 
 class MovieServiceImpl: MovieService {
     
-    func fetchMovies(_ sort: MovieListType) -> AnyPublisher<FetchMoviesResponse, Error> {
+    func fetchMovies(_ sort: MovieListType, page: Int = 1) -> AnyPublisher<FetchMoviesResponse, Error> {
         
         // Build Request
         let apiKey = "34738023d27013e6d1b995443764da44"
         let tag = tags[sort]!
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(tag)?api_key=\(apiKey)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(tag)?api_key=\(apiKey)&page=\(page)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         

@@ -16,8 +16,8 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViews()
         bindViewModel()
+        configureViews()
     }
     
     func configureViews() {
@@ -26,10 +26,9 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     }
     
     private func configureTableView() {
-        dataSource = MovieListDataSource()
         tableView.dataSource = dataSource
         tableView.delegate = self
-        tableView.rowHeight = 180
+        tableView.rowHeight = CGFloat(MovieListItemTableViewCell.cellHeight)
     }
     
     private func configureFilterMenu() {
@@ -43,12 +42,13 @@ class MovieListViewController: UIViewController, MovieListViewContract {
         ]
         let filterMenu = UIMenu(image: UIImage(systemName: "sort_down"), options: .displayInline, children: menuItems)
         self.navigationItem.rightBarButtonItem?.menu = filterMenu
-        //self.navigationItem.rightBarButtonItem?.showsMenuAsPrimaryAction = true
     }
     
     func bindViewModel() {
         AppContainer.configure(self)
         viewModel.fetchMovies(sorted: .popular)
+        dataSource = MovieListDataSource()
+        dataSource.viewModel = viewModel
     }
     
     deinit {
@@ -63,8 +63,9 @@ class MovieListViewController: UIViewController, MovieListViewContract {
     
     // MARK: - MovieListViewContract
     
-    func displayMovies(_ movies: [MovieListItemProps]) {
+    func displayMovies(_ movies: [MovieListItemProps], fetchMore: Bool) {
         dataSource.setMovies(movies)
+        dataSource.fetchMoreRows = fetchMore
         tableView.reloadData()
     }
     
@@ -83,6 +84,10 @@ extension MovieListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.selectMovie(at: indexPath.row)
         performSegue(withIdentifier: "movieDetails", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? CGFloat(MovieListItemTableViewCell.cellHeight) : 60
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
